@@ -1,0 +1,11 @@
+installation_directory: /home/emma/github_repos
+working_directory: /home/emma/tmp/ 
+experiment_name: klebs_high_irradiance
+number_samples: 4
+path_genome: /home/emma/rnaseqdata/chr5.fa
+path_annotation: /home/emma/rnaseqdata/chr5.gtf
+path_sample_1: /home/emma/rnaseqdata/col0_7dag_chr5_1.fastq.gz
+path_sample_2: /home/emma/rnaseqdata/col0_7dag_chr5_2.fastq.gz
+path_sample_3: /home/emma/rnaseqdata/abc_7dag_chr5_1.fastq.gz
+path_sample_4: /home/emma/rnaseqdata/abc_7dag_chr5_2.fastq.gz
+experimental_desing: home/emma/rnaseqdata/experimental_desing.csv

@@ -1,0 +1,39 @@
+
+#$ -S /bin/bash
+#$ -V
+#$ -cwd
+#$ -j yes
+
+## Parameters
+RESDIR=$1
+INSDIR=$2
+DESING=$3
+
+echo ""
+echo "========================="
+echo "| TRANSCRIPTOME MERGING |"
+echo "========================="
+echo ""
+
+## Accessing results folder
+cd $RESDIR
+
+## Merging sample transcriptomes
+stringtie --merge -G ../annotation/annotation.gtf -o stringtie_merged.gtf merge_list.txt
+
+## Comparing our assembly with the reference
+gffcompare -r ../annotation/annotation.gtf -G -o comparison stringtie_merged.gtf
+
+##Check difference with reference annotation
+DIFF=$(grep "Novel loci:" comparison.stats | awk '{ print $5 }'| cut -d"%" -f 1 | cut -d"." -f 1)
+
+if [ $DIFF -ge 5 ]
+then
+   echo "============================================================="
+   echo "| WARNING: REFERENCE TRANSCRIPTOME DIFFERS MORE TAN 5% !!!! |"
+   echo "============================================================="
+fi
+
+##Passing entry arguments to an R script
+
+Rscript $INSDIR/r_script_ballgown.R $RESDIR $DESING
