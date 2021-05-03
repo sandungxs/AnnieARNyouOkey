@@ -36,4 +36,4 @@ fi
 
 ##Passing entry arguments to an R script
 
-Rscript $INSDIR/r_script_ballgown.R $RESDIR $DESING
+#Rscript $INSDIR/r_script_ballgown.R $RESDIR $DESING

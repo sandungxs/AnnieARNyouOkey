@@ -26,6 +26,7 @@ hisat2 --dta -x ../../genome/index -U sample_$i.fq.gz -S sample_$i.sam
 ## Generting sorted bam file
 samtools sort -o sample_$i.bam sample_$i.sam
 rm sample_$i.sam
+rm *.fq.gz
 samtools index sample_$i.bam
 
 
@@ -38,16 +39,6 @@ echo ${SAMPLE_DIR}/sample_$i.gtf >> ../../results/merge_list.txt
 ##Gene expression quantification
 stringtie -e -B -G ../../annotation/annotation.gtf -o sample_$i.gtf sample_$i.bam
 
-##Write on blackboard
-echo "sample_$i done!!" >> ../../results/blackboard
-
-##Read the blackboard
-NUM_PROC=$(wc -l ../../results/blackboard | awk '{ print $1 }')
-
-if [ $NUM_PROC -eq $NUMSAMPLES ]
-then
-   qsub -o merge -N merge $INSDIR/pipernas/transcriptome_merging ${SAMPLE_DIR}/../../results $INSDIR $DESING
-fi
  
 echo ""
 echo "=================="
