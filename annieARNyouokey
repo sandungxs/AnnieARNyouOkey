@@ -99,8 +99,6 @@ echo "Samples have been correctly processed!"
 
 # Merging.
 
-bash $INSDIR/AnnieARNyouOkey/transcriptome_merging $SAMPLE_DIR/../../results $INS_DIR $DESIGN
-
-
+bash $INSDIR/AnnieARNyouOkey/transcriptome_merging $RESDIR/../../results $INSDIR $DESIGN
 
 
