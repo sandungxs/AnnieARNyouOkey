@@ -1,5 +1,8 @@
 #! /bin/bash
 
+## Author and Contact: Emma Serrano Pérez
+
+
 ## Help message when no parameter is provide.
 if [ $# -ne 1 ]
 then
@@ -14,23 +17,30 @@ fi
 PARAMS=$1
 
 echo ""
-echo "======================="
-echo "| LOADING PARAMETERS: |"
-echo "======================="
+echo "========================================="
+echo "| LOADING PARAMETERS FROM FILE: $PARAMS |"
+echo "========================================="
 echo ""
 
+# Loading installation directory
 INSDIR=$(grep installation_directory: $PARAMS | awk '{ print $2 }')
 echo "Installation directory = $INSDIR"
+# Loading working directory
 WD=$(grep working_directory: $PARAMS | awk '{ print $2 }')
 echo "Working directory = $WD"
+# Loading main folder
 EXP=$(grep experiment_name: $PARAMS | awk '{ print $2 }')
 echo "Experiment name = $EXP"
+# Loading number of samples
 NUMSAMPLES=$(grep number_samples: $PARAMS | awk '{ print $2 }')
 echo "Number of samples = $NUMSAMPLES"
+# Loading reference genome
 GENOME=$(grep path_genome: $PARAMS | awk '{ print $2 }')
 echo "Reference genome = $GENOME"
+# Loading annotation file
 ANNOT=$(grep path_annotation: $PARAMS | awk '{ print $2 }')
 echo "Genome Annotation = $ANNOT"
+# Loading experimental design
 DESING=$(grep experimental_desing: $PARAMS | awk '{ print $2}')
 echo="Experimental desing = $DESING"
 
